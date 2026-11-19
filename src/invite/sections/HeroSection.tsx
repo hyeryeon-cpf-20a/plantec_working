@@ -4,8 +4,14 @@ import { imageSrc } from '../../lib/image'
 import { Reveal } from '../ui/Reveal'
 import { SectionShell } from '../SectionShell'
 
-export function heroBrandFont(f: HeroSettings['brandFont']) {
-  return f === 'script' ? 'var(--f-script)' : f === 'sans' ? 'var(--f-sans)' : 'var(--f-serif)'
+/**
+ * 브랜드 글씨 모양 (첫 화면 위 · 카드 맨 아래 로고가 같이 사용)
+ * sans: 플랜텍 로고처럼 반듯하고 아주 굵은 고딕 / serif: 굵은 기울임 / script: 필기체
+ */
+export function brandTextStyle(f: HeroSettings['brandFont'], size: number): CSSProperties {
+  if (f === 'script') return { fontFamily: 'var(--f-script)', fontWeight: 400, fontSize: `${size * 1.3}rem`, lineHeight: 1.15 }
+  if (f === 'serif') return { fontFamily: 'var(--f-serif)', fontStyle: 'italic', fontWeight: 700, fontSize: `${size}rem`, lineHeight: 1.2 }
+  return { fontFamily: 'var(--f-sans)', fontWeight: 800, fontSize: `${size}rem`, lineHeight: 1.15, letterSpacing: '-0.01em' }
 }
 
 /** 배경 그림 (섹션 전체를 채우고, 아래쪽은 바탕색으로 자연스럽게 이어짐) */
@@ -33,20 +39,18 @@ export function HeroText({ s, animate = true }: { s: HeroSettings; animate?: boo
   const W = animate ? Reveal : ({ children, style }: { children: React.ReactNode; style?: CSSProperties; delay?: number }) => <div style={style}>{children}</div>
   return (
     <div>
-      {s.brand && (
+      {s.brandImage && imageSrc(s.brandImage) ? (
         <W>
-          <p
-            style={{
-              fontFamily: heroBrandFont(s.brandFont),
-              fontStyle: s.brandFont === 'serif' ? 'italic' : undefined,
-              fontWeight: s.brandFont === 'script' ? 400 : 700,
-              fontSize: s.brandFont === 'script' ? '1.9rem' : '1.42rem',
-              lineHeight: 1.2,
-            }}
-          >
-            {s.brand}
-          </p>
+          <img src={imageSrc(s.brandImage)!} alt={s.brand || '로고'} className="block h-auto max-h-[56px] w-auto max-w-[60%] object-contain" />
         </W>
+      ) : (
+        s.brand && (
+          <W>
+            <p className="whitespace-pre-line" style={brandTextStyle(s.brandFont, 1.42)}>
+              {s.brand}
+            </p>
+          </W>
+        )
       )}
       {s.title && (
         <W delay={0.08}>

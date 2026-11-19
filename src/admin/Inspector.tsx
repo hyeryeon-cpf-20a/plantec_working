@@ -246,17 +246,19 @@ function HeroEditor({ id }: { id: string }) {
   return (
     <>
       <Group title="글자">
-        <TextInput label="브랜드 (맨 위 기울임 글씨)" value={s.brand} onChange={(v) => set((x) => void (x.brand = v))} />
+        <TextArea label="브랜드 (맨 위 로고 글씨)" value={s.brand} rows={2} onChange={(v) => set((x) => void (x.brand = v))} hint="줄을 바꾸면 두 줄로 쌓여요 (예: 플랜텍 ↵ PLANTEC)." />
         <Segmented
-          label="브랜드 글꼴"
+          label="브랜드 글꼴 (맨 아래 로고도 같이 바뀌어요)"
           value={s.brandFont}
           onChange={(v) => set((x) => void (x.brandFont = v))}
           options={[
+            { value: 'sans', label: '굵은 고딕' },
             { value: 'serif', label: '굵은 기울임' },
             { value: 'script', label: '필기체' },
-            { value: 'sans', label: '고딕' },
           ]}
         />
+        <ImageField label="로고 이미지 (선택 · 넣으면 글자 대신 표시)" value={s.brandImage} aspect="original" onChange={(v) => set((x) => void (x.brandImage = v))} />
+        <p className="text-[11px] text-stone-400">배경이 어두우니 흰색 로고나 배경이 투명한 PNG를 추천해요.</p>
         <TextArea label="큰 제목" value={s.title} rows={3} onChange={(v) => set((x) => void (x.title = v))} hint="줄바꿈한 그대로 보여요." />
         <Slider label="큰 제목 크기" min={1.4} max={3.4} step={0.05} value={s.titleSize} onChange={(v) => set((x) => void (x.titleSize = v))} format={(n) => `${n.toFixed(2)}rem`} />
         <TextArea label="부제 (한글)" value={s.subtitle} rows={2} onChange={(v) => set((x) => void (x.subtitle = v))} />
@@ -465,8 +467,8 @@ function EventEditor({ id }: { id: string }) {
           <ColorInput label="카드 색" value={s.cardColor} onChange={(v) => set((x) => void (x.cardColor = v))} presets={['#FFFFFF', '#F7F7F5', '#F4F0E8']} />
           <ColorInput label="카드 글자색" value={s.cardTextColor} onChange={(v) => set((x) => void (x.cardTextColor = v))} presets={['#1A1A1A', '#333333', '#514A43']} />
         </div>
-        <TextInput label="맨 아래 글자 로고" value={s.footerText} onChange={(v) => set((x) => void (x.footerText = v))} />
-        <ColorInput label="글자 로고 색" value={s.footerColor} onChange={(v) => set((x) => void (x.footerColor = v))} presets={['#1F3C98', '#151C5C', '#6CBC96']} />
+        <TextArea label="맨 아래 글자 로고" value={s.footerText} rows={2} onChange={(v) => set((x) => void (x.footerText = v))} hint="글꼴은 ‘첫 화면’의 브랜드 글꼴을 따라가요. 줄을 바꾸면 두 줄로 쌓여요." />
+        <ColorInput label="글자 로고 색" value={s.footerColor} onChange={(v) => set((x) => void (x.footerColor = v))} presets={['#00578F', '#1F3C98', '#151C5C', '#6CBC96']} />
         <ImageField label="로고 이미지 (넣으면 글자 대신 표시)" value={s.footerImage} aspect="original" onChange={(v) => set((x) => void (x.footerImage = v))} />
         <p className="text-[11px] text-stone-400">버튼 · 강조 색은 ‘기본 정보 · 전체 디자인’의 포인트 색을 따라가요.</p>
       </Group>

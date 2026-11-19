@@ -10,7 +10,7 @@ import { Img } from '../ui/Img'
 import { Lightbox } from '../ui/Lightbox'
 import { Reveal } from '../ui/Reveal'
 import { SectionShell } from '../SectionShell'
-import { heroBrandFont, HeroBackdrop, HeroText } from './HeroSection'
+import { brandTextStyle, HeroBackdrop, HeroText } from './HeroSection'
 
 // ------------------------------------------------------------------ 작은 조각들
 
@@ -289,6 +289,9 @@ function TabBody({ tab, s }: { tab: EventTab; s: EventSettings }) {
 }
 
 function Footer({ s }: { s: EventSettings }) {
+  const { content } = useInvite()
+  const hero = content.sections.find((x) => x.type === 'hero')
+  const font = hero?.type === 'hero' ? hero.settings.brandFont : 'sans'
   if (s.footerImage) {
     return (
       <div className="mx-auto mt-14 w-[56%] pb-14">
@@ -299,8 +302,8 @@ function Footer({ s }: { s: EventSettings }) {
   if (!s.footerText) return <div className="pb-12" />
   return (
     <p
-      className="mt-14 pb-14 text-center"
-      style={{ color: s.footerColor, fontFamily: heroBrandFont('serif'), fontStyle: 'italic', fontWeight: 700, fontSize: '1.95rem', lineHeight: 1.2 }}
+      className="mt-14 whitespace-pre-line pb-14 text-center"
+      style={{ ...brandTextStyle(font, 1.95), color: s.footerColor }}
     >
       {s.footerText}
     </p>

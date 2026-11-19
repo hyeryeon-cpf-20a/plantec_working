@@ -130,7 +130,8 @@ export interface HeroSettings {
   subtitle: string
   bgImage: ImageRef | null
   overlay: number // 0~1, 글씨가 잘 보이게 어둡게
-  brandFont: 'serif' | 'script' | 'sans'
+  brandFont: 'serif' | 'script' | 'sans' // sans = 굵은 고딕 (플랜텍 로고 스타일)
+  brandImage: ImageRef | null // 로고 이미지 (넣으면 브랜드 글자 대신 표시)
   titleSize: number // rem
   height: number // 화면 높이 대비 % (상세 페이지 머리 높이도 같이 사용)
   subtitleColor: string

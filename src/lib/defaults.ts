@@ -97,7 +97,8 @@ export function defaultSettings<T extends SectionType>(type: T): SettingsOf<T> {
       subtitle: '2026 미코세라믹스 강릉 제 6공장 준공식',
       bgImage: { url: '/samples/event-hero.svg', width: 1200, height: 900, focusX: 50, focusY: 50, zoom: 1 },
       overlay: 0,
-      brandFont: 'serif',
+      brandFont: 'sans',
+      brandImage: null,
       titleSize: 1.95,
       height: 56,
       subtitleColor: '#7FCB9E',
@@ -126,7 +127,7 @@ export function defaultSettings<T extends SectionType>(type: T): SettingsOf<T> {
       cardTextColor: '#1A1A1A',
       footerText: 'MiCo Ceramics',
       footerImage: null,
-      footerColor: '#1F3C98',
+      footerColor: '#00578F',
     }),
     gallery: () => ({
       eyebrow: 'GALLERY',

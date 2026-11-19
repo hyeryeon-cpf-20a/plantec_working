@@ -9,7 +9,7 @@ import type {
   SectionType,
   SettingsOf,
 } from '../lib/types'
-import { defaultEventTabs, PALETTE, SECTION_META } from '../lib/defaults'
+import { defaultEventTabs, PALETTE, PLANTEC_LOGO, SECTION_META } from '../lib/defaults'
 import { imageSrc } from '../lib/image'
 import { uid } from '../lib/util'
 import { useEditor } from './EditorContext'
@@ -470,6 +470,8 @@ function EventEditor({ id }: { id: string }) {
         <TextArea label="맨 아래 글자 로고" value={s.footerText} rows={2} onChange={(v) => set((x) => void (x.footerText = v))} hint="글꼴은 ‘첫 화면’의 브랜드 글꼴을 따라가요. 줄을 바꾸면 두 줄로 쌓여요." />
         <ColorInput label="글자 로고 색" value={s.footerColor} onChange={(v) => set((x) => void (x.footerColor = v))} presets={['#00578F', '#1F3C98', '#151C5C', '#6CBC96']} />
         <ImageField label="로고 이미지 (넣으면 글자 대신 표시)" value={s.footerImage} aspect="original" onChange={(v) => set((x) => void (x.footerImage = v))} />
+        <Btn onClick={() => set((x) => void (x.footerImage = { ...PLANTEC_LOGO }))}>플랜텍 로고 넣기</Btn>
+        <p className="text-[11px] text-stone-400">로고 이미지를 지우면 위의 글자 로고가 나와요 (첫 줄 크게, 둘째 줄 작게).</p>
         <p className="text-[11px] text-stone-400">버튼 · 강조 색은 ‘기본 정보 · 전체 디자인’의 포인트 색을 따라가요.</p>
       </Group>
     </>

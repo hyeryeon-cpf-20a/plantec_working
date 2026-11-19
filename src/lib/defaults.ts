@@ -1,6 +1,9 @@
 import type { EventTab, InvitationContent, ProgramItem, Section, SectionStyle, SectionType, SettingsOf } from './types'
 import { uid } from './util'
 
+/** 회사 로고 (카드 맨 아래 기본 로고) */
+export const PLANTEC_LOGO = { url: '/logos/plantec.png', width: 798, height: 431, focusX: 50, focusY: 50, zoom: 1 }
+
 export const DEFAULT_SLUG = import.meta.env.VITE_DEFAULT_SLUG || 'event'
 
 /** 기본 색 (남색 배경 · 흰 글씨 · 초록 포인트) */
@@ -125,9 +128,9 @@ export function defaultSettings<T extends SectionType>(type: T): SettingsOf<T> {
       mapDescription: '원하시는 맵을 선택하시면 길안내가 시작됩니다.',
       cardColor: '#FFFFFF',
       cardTextColor: '#1A1A1A',
-      footerText: 'MiCo Ceramics',
-      footerImage: null,
-      footerColor: '#00578F',
+      footerText: '플랜텍\nPLANTEC',
+      footerImage: PLANTEC_LOGO,
+      footerColor: '#005891',
     }),
     gallery: () => ({
       eyebrow: 'GALLERY',

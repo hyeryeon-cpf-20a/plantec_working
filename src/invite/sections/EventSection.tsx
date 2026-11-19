@@ -294,19 +294,24 @@ function Footer({ s }: { s: EventSettings }) {
   const font = hero?.type === 'hero' ? hero.settings.brandFont : 'sans'
   if (s.footerImage) {
     return (
-      <div className="mx-auto mt-14 w-[56%] pb-14">
-        <Img image={s.footerImage} aspect="original" />
+      <div className="mx-auto mt-14 w-[42%] pb-14">
+        {/* 투명 PNG 로고가 그대로 보이게 바탕 없이 표시 */}
+        <img src={imageSrc(s.footerImage) ?? ''} alt="로고" className="block h-auto w-full" decoding="async" />
       </div>
     )
   }
-  if (!s.footerText) return <div className="pb-12" />
+  if (!s.footerText.trim()) return <div className="pb-12" />
+  // 첫 줄은 크게, 둘째 줄부터는 작게 (예: 플랜텍 ↵ PLANTEC)
+  const [first, ...rest] = s.footerText.split('\n')
   return (
-    <p
-      className="mt-14 whitespace-pre-line pb-14 text-center"
-      style={{ ...brandTextStyle(font, 1.95), color: s.footerColor }}
-    >
-      {s.footerText}
-    </p>
+    <div className="mt-14 pb-14 text-center" style={{ color: s.footerColor }}>
+      <p style={{ ...brandTextStyle(font, 2.3), lineHeight: 1.1 }}>{first}</p>
+      {rest.filter((l) => l.trim()).map((l, i) => (
+        <p key={i} className="mt-1" style={{ ...brandTextStyle(font, 1.15), fontWeight: font === 'sans' ? 500 : undefined, letterSpacing: font === 'sans' ? '0.02em' : undefined }}>
+          {l}
+        </p>
+      ))}
+    </div>
   )
 }
 

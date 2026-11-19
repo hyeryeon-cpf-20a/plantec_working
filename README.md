@@ -22,9 +22,7 @@
 ## 1. Supabase 준비 (약 10분)
 
 1. [supabase.com](https://supabase.com)에서 **새 프로젝트**를 만듭니다. 리전은 `Northeast Asia (Seoul)`을 추천해요.
-2. **SQL Editor**에서 `supabase/migrations/` 폴더의 SQL 파일을 **이름 순서대로** 실행합니다.
-   - `20261117000000_init.sql`
-   - `20261118000000_versions.sql`
+2. 왼쪽 **SQL Editor** → 새 쿼리 창에 [`supabase/setup.sql`](supabase/setup.sql) 내용 **전체**를 붙여넣고 **Run**. (GitHub에서 이 파일을 열고 오른쪽 위 *Copy raw file* 버튼으로 복사하면 편해요.) 아래에 *Success. No rows returned*가 나오면 끝이에요.
 3. **Authentication → Sign In / Providers → Email**: 가입 직후 바로 로그인하려면 *Confirm email*을 끄세요. 관리자 가입을 마치면 *Allow new users to sign up*을 꺼 두는 것을 권장해요.
 4. **Authentication → URL Configuration**의 *Site URL*에 배포 주소를 넣습니다.
 5. **Project Settings → API**에서 `Project URL`과 `Publishable key`(또는 `anon` key)를 복사합니다.

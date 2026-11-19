@@ -34,7 +34,7 @@ function NotConfigured() {
           배포 환경변수에 <code className="rounded bg-stone-100 px-1">VITE_SUPABASE_URL</code>,{' '}
           <code className="rounded bg-stone-100 px-1">VITE_SUPABASE_PUBLISHABLE_KEY</code> 설정
         </li>
-        <li>다시 배포 후 /admin 에서 가입 → 첫 계정이 관리자가 됩니다</li>
+        <li>다시 배포 후 /admin 에서 가입 → 첫 계정이 관리자가 됩니다 (변수는 Key에 이름, Value에 값을 넣고, 저장한 뒤 꼭 다시 배포해야 반영돼요)</li>
       </ol>
       <p className="mt-4 text-[12px] text-stone-400">자세한 내용은 README.md 를 참고하세요.</p>
     </Shell>
